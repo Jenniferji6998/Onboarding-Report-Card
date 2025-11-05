@@ -1095,11 +1095,6 @@
             </div>
         </div>
 
-        <div class="footer">
-            <p>If you have any questions or would like to discuss your team's onboarding progress in detail, please let us know!</p>
-            <strong>Revenue Onboarding Team</strong>
-        </div>
-
         <div class="question-section">
             <h2>💬 Have Questions?</h2>
             <p>Submit your questions below and we'll get back to you!</p>
@@ -1124,11 +1119,24 @@
                 <div id="formMessage" class="form-message"></div>
             </form>
         </div>
+
+        <div class="footer">
+            <p>If you'd like to discuss your team's onboarding process in detail,<br>feel free to reach out to our Revenue Onboarding team:</p>
+            <p style="margin-top: 20px; line-height: 2;">
+                <strong>Siobhan Sweeney:</strong> <a href="mailto:siobhan.sweeney@shopify.com" style="color: #00ffff; text-decoration: none;">siobhan.sweeney@shopify.com</a><br>
+                <strong>Ailee Brownrigg:</strong> <a href="mailto:manda.brownrigg@shopify.com" style="color: #00ffff; text-decoration: none;">manda.brownrigg@shopify.com</a><br>
+                <strong>Torina Hopfauf:</strong> <a href="mailto:torina.hopfauf@shopify.com" style="color: #00ffff; text-decoration: none;">torina.hopfauf@shopify.com</a><br>
+                <strong>Jennifer Ji:</strong> <a href="mailto:jennifer.ji@shopify.com" style="color: #00ffff; text-decoration: none;">jennifer.ji@shopify.com</a>
+            </p>
+            <strong style="margin-top: 20px; display: block;">Revenue Onboarding Team</strong>
+        </div>
     </div>
 
     <script>
-        // Google Sheets form submission
-        const scriptURL = 'https://script.google.com/a/macros/shopify.com/s/AKfycbwSVLjReuul_TOqR_A6js62jRP93OFV61fGrWJ3MOW1ZgBl3TUu1n2fIN-StpbC3la3/exec';
+        // Slack Webhook URL
+        const SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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';
+        
+        // Store questions locally
         const form = document.getElementById('questionForm');
         const formMessage = document.getElementById('formMessage');
 
@@ -1139,28 +1147,102 @@
             formMessage.textContent = 'Submitting...';
             formMessage.className = 'form-message loading';
             
-            const formData = new FormData(form);
+            // Get form data
+            const managerName = document.getElementById('managerName').value;
+            const newHireName = document.getElementById('newHireName').value;
+            const question = document.getElementById('question').value;
             
-            fetch(scriptURL, { 
-                method: 'POST', 
-                body: formData 
-            })
-            .then(response => {
-                formMessage.textContent = '✓ Question submitted successfully! We\'ll get back to you soon.';
-                formMessage.className = 'form-message success';
-                form.reset();
-                
-                // Hide message after 5 seconds
-                setTimeout(() => {
-                    formMessage.textContent = '';
-                    formMessage.className = 'form-message';
-                }, 5000);
-            })
-            .catch(error => {
-                console.error('Error!', error.message);
-                formMessage.textContent = '✗ There was an error submitting your question. Please try again.';
-                formMessage.className = 'form-message error';
+            // Create question object
+            const questionData = {
+                timestamp: new Date().toISOString(),
+                managerName: managerName,
+                newHireName: newHireName,
+                question: question
+            };
+            
+            // Get existing questions from localStorage
+            const existingQuestions = JSON.parse(localStorage.getItem('submittedQuestions') || '[]');
+            
+            // Add new question
+            existingQuestions.push(questionData);
+            
+            // Save back to localStorage
+            localStorage.setItem('submittedQuestions', JSON.stringify(existingQuestions));
+            
+            // Send Slack notification
+            const timestamp = new Date().toLocaleString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true
             });
+            
+            const slackMessage = {
+                text: "🆕 *New Question Submitted*",
+                blocks: [
+                    {
+                        type: "header",
+                        text: {
+                            type: "plain_text",
+                            text: "🆕 New Question Submitted",
+                            emoji: true
+                        }
+                    },
+                    {
+                        type: "section",
+                        fields: [
+                            {
+                                type: "mrkdwn",
+                                text: `*Manager:*\n${managerName}`
+                            },
+                            {
+                                type: "mrkdwn",
+                                text: `*New Hire:*\n${newHireName}`
+                            }
+                        ]
+                    },
+                    {
+                        type: "section",
+                        text: {
+                            type: "mrkdwn",
+                            text: `*Question:*\n${question}`
+                        }
+                    },
+                    {
+                        type: "context",
+                        elements: [
+                            {
+                                type: "mrkdwn",
+                                text: `⏰ Submitted: ${timestamp}`
+                            }
+                        ]
+                    }
+                ]
+            };
+            
+            // Send to Slack
+            fetch(SLACK_WEBHOOK_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(slackMessage)
+            }).catch(error => {
+                console.log('Slack notification failed, but question was saved locally');
+            });
+            
+            // Show success message
+            formMessage.textContent = '✓ Question submitted successfully! We\'ll get back to you soon.';
+            formMessage.className = 'form-message success';
+            form.reset();
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                formMessage.textContent = '';
+                formMessage.className = 'form-message';
+            }, 5000);
         });
     </script>
 </body>

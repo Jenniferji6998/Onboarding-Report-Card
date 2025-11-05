@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Card Details - Revenue Onboarding</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #a0d8e0;
+            background: #0a0a1a;
+            min-height: 100vh;
+            padding: 40px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 0, 255, 0.4) 0%, transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(0, 255, 255, 0.4) 0%, transparent 40%);
+            animation: wavePulse 3s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes wavePulse {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg);
+                opacity: 0.8;
+            }
+            50% { 
+                transform: scale(1.2) rotate(180deg);
+                opacity: 1;
+            }
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 100px,
+                    rgba(255, 0, 255, 0.08) 100px,
+                    rgba(255, 0, 255, 0.08) 102px
+                ),
+                repeating-linear-gradient(
+                    -45deg,
+                    transparent,
+                    transparent 100px,
+                    rgba(0, 255, 255, 0.08) 100px,
+                    rgba(0, 255, 255, 0.08) 102px
+                );
+            animation: diagonalSpin 30s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes diagonalSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .power-glow {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255, 0, 255, 0.2) 0%, transparent 30%),
+                radial-gradient(circle at 70% 70%, rgba(0, 255, 255, 0.2) 0%, transparent 30%);
+            animation: powerOrbit 20s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes powerOrbit {
+            0%, 100% { transform: rotate(0deg) scale(1); opacity: 0.8; }
+            50% { transform: rotate(180deg) scale(1.1); opacity: 1; }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(10, 10, 26, 0.98);
+            border: 4px solid #ff00ff;
+            box-shadow: 
+                0 0 30px rgba(255, 0, 255, 1),
+                0 0 60px rgba(0, 255, 255, 0.8),
+                inset 0 0 80px rgba(255, 0, 255, 0.2);
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out, borderGlow 2s ease-in-out infinite alternate;
+            position: relative;
+            z-index: 100;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes borderGlow {
+            0% { 
+                border-color: #ff00ff;
+                box-shadow: 
+                    0 0 30px rgba(255, 0, 255, 1),
+                    0 0 60px rgba(0, 255, 255, 0.8),
+                    inset 0 0 80px rgba(255, 0, 255, 0.2);
+            }
+            100% { 
+                border-color: #00ffff;
+                box-shadow: 
+                    0 0 30px rgba(0, 255, 255, 1),
+                    0 0 60px rgba(255, 0, 255, 0.8),
+                    inset 0 0 80px rgba(0, 255, 255, 0.2);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+            color: #0a0a0a;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2em;
+            margin-bottom: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.3);
+            color: #0a0a0a;
+            padding: 8px 20px;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85em;
+            border: 2px solid rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .back-button:hover {
+            background: rgba(0, 0, 0, 0.5);
+            transform: translateX(-3px);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: #c778dd;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #ff00ff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(255, 0, 255, 0.8);
+            box-shadow: 0 3px 15px rgba(255, 0, 255, 0.5);
+        }
+
+        .section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .section li {
+            padding: 15px 0;
+            padding-left: 40px;
+            position: relative;
+            border-bottom: 1px solid rgba(86, 182, 194, 0.2);
+            transition: all 0.3s;
+            color: #a0d8e0;
+        }
+
+        .section li:hover {
+            background: rgba(86, 182, 194, 0.05);
+            padding-left: 45px;
+            border-left: 4px solid #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.6), inset 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+
+        .section li:last-child {
+            border-bottom: none;
+        }
+
+        .section li::before {
+            content: attr(data-emoji);
+            position: absolute;
+            left: 0;
+            font-size: 1.5em;
+            filter: drop-shadow(0 0 3px rgba(199, 120, 221, 0.3));
+        }
+
+        .section li strong {
+            color: #c778dd;
+            text-shadow: 0 0 3px rgba(199, 120, 221, 0.2);
+        }
+
+        .highlight-box {
+            background: rgba(229, 192, 123, 0.08);
+            border: 3px solid #ffff00;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 
+                0 0 25px rgba(255, 255, 0, 0.7),
+                0 0 50px rgba(255, 255, 0, 0.4),
+                inset 0 0 30px rgba(255, 255, 0, 0.1);
+        }
+
+        .highlight-box p {
+            color: #e5c07b;
+            text-shadow: 0 0 3px rgba(229, 192, 123, 0.2);
+        }
+
+        .value-box {
+            background: rgba(152, 195, 121, 0.08);
+            border: 3px solid #00ff00;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 
+                0 0 25px rgba(0, 255, 0, 0.7),
+                0 0 50px rgba(0, 255, 0, 0.4),
+                inset 0 0 30px rgba(0, 255, 0, 0.1);
+        }
+
+        .value-box li {
+            color: #98c379;
+        }
+
+        .value-box li strong {
+            color: #98c379;
+            text-shadow: 0 0 3px rgba(152, 195, 121, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .back-button {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin-bottom: 20px;
+            }
+
+            .header {
+                padding: 60px 20px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="power-glow"></div>
+    
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-button">← Back</a>
+            <h1>Report Card Details</h1>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2>How the evaluations are created:</h2>
+                <div class="highlight-box">
+                    <p>All report card scores and assessments are generated using transcript data from Revenue Onboarding live sessions, analyzed by AI against role-specific and core competency metrics. This ensures that each evaluation reflects actual participation and engagement using an objective, data-driven process.</p>
+                    <p style="margin-bottom: 0;"><strong>Note:</strong> Seismic Completion Rate and Badge Overview Chart are specifically based on each new hire's progress as of their week 5 mark in the program.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Why this is valuable for you:</h2>
+                <div class="value-box">
+                    <ul>
+                        <li data-emoji="🚦">
+                            <strong>Clear Progress Tracking:</strong> Visualize your new hire's journey across all onboarding touchpoints.
+                        </li>
+                        <li data-emoji="📈">
+                            <strong>Benchmarking:</strong> Easily compare your new hire's progress to peers in their cohort.
+                        </li>
+                        <li data-emoji="💡">
+                            <strong>Actionable Insights & Coaching:</strong> Quickly spot where your support will have the most impact.
+                        </li>
+                        <li data-emoji="🕒">
+                            <strong>At-a-Glance Data:</strong> Save time and make informed, proactive decisions with concise visual summaries.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

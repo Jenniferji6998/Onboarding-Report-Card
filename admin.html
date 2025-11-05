@@ -357,8 +357,10 @@
 
         // Check password
         function checkPassword() {
-            const input = document.getElementById('passwordInput').value;
+            const input = document.getElementById('passwordInput').value.trim();
             const errorMsg = document.getElementById('errorMessage');
+            
+            console.log('Input:', input, 'Expected:', ADMIN_PASSWORD, 'Match:', input === ADMIN_PASSWORD);
             
             if (input === ADMIN_PASSWORD) {
                 document.getElementById('loginScreen').style.display = 'none';
@@ -417,15 +419,12 @@
                 return;
             }
 
-            // Display questions (most recent first)
-            questionsList.innerHTML = filteredQuestions.reverse().map((q, index) => {
-                const originalIndex = questions.findIndex(item => 
-                    item.timestamp === q.timestamp && 
-                    item.managerName === q.managerName &&
-                    item.question === q.question
-                );
-                return `
-                <div class="question-card ${q.addressed ? 'addressed' : ''}" data-index="${originalIndex}">
+            // Display questions (most recent first) - need to reverse COPY not original
+            const displayQuestions = [...filteredQuestions].reverse();
+            questionsList.innerHTML = displayQuestions.map((q) => {
+                // Find the original index in the non-filtered array
+                const originalIndex = questions.indexOf(q);
+                return `<div class="question-card ${q.addressed ? 'addressed' : ''}" data-index="${originalIndex}">
                     <div class="question-header">
                         <div class="question-meta">
                             <strong>Manager:</strong> ${q.managerName} | 
@@ -442,8 +441,8 @@
                             ${q.addressed ? '✓ Mark as Pending' : '✓ Mark as Addressed'}
                         </button>
                     </div>
-                </div>
-            `}).join('');
+                </div>`;
+            }).join('');
         }
 
         // Toggle addressed status

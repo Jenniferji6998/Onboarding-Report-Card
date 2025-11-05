@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Hire Onboarding Report Card</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #a0d8e0;
+            background: #0a0a1a;
+            min-height: 100vh;
+            padding: 40px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 0, 255, 0.4) 0%, transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(0, 255, 255, 0.4) 0%, transparent 40%);
+            animation: wavePulse 3s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes wavePulse {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg);
+                opacity: 0.8;
+            }
+            50% { 
+                transform: scale(1.2) rotate(180deg);
+                opacity: 1;
+            }
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 100px,
+                    rgba(255, 0, 255, 0.08) 100px,
+                    rgba(255, 0, 255, 0.08) 102px
+                ),
+                repeating-linear-gradient(
+                    -45deg,
+                    transparent,
+                    transparent 100px,
+                    rgba(0, 255, 255, 0.08) 100px,
+                    rgba(0, 255, 255, 0.08) 102px
+                );
+            animation: diagonalSpin 30s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes diagonalSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .energy-burst {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 250%;
+            height: 250%;
+            background: 
+                radial-gradient(circle, 
+                    rgba(255, 0, 255, 0.25) 0%, 
+                    rgba(0, 255, 255, 0.2) 15%,
+                    rgba(255, 255, 0, 0.15) 30%,
+                    transparent 50%);
+            animation: burstSpin 6s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes burstSpin {
+            0% { 
+                transform: translate(-50%, -50%) scale(0.7) rotate(0deg);
+                opacity: 0.6;
+            }
+            33% { 
+                transform: translate(-50%, -50%) scale(1.1) rotate(120deg);
+                opacity: 1;
+            }
+            66% {
+                transform: translate(-50%, -50%) scale(0.9) rotate(240deg);
+                opacity: 0.8;
+            }
+            100% { 
+                transform: translate(-50%, -50%) scale(0.7) rotate(360deg);
+                opacity: 0.6;
+            }
+        }
+
+        .bg-stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle, #ff00ff 0%, transparent 4px),
+                radial-gradient(circle, #00ffff 0%, transparent 3px),
+                radial-gradient(circle, #ffff00 0%, transparent 5px),
+                radial-gradient(circle, #ff00ff 0%, transparent 3px),
+                radial-gradient(circle, #00ffff 0%, transparent 4px),
+                radial-gradient(circle, #ffff00 0%, transparent 3px),
+                radial-gradient(circle, #ff00ff 0%, transparent 6px),
+                radial-gradient(circle, #00ffff 0%, transparent 4px);
+            background-size: 400% 400%;
+            background-position: 
+                20% 30%,
+                60% 70%,
+                50% 50%,
+                80% 10%,
+                90% 60%,
+                33% 80%,
+                15% 60%,
+                45% 25%;
+            animation: particleSwarm 25s ease-in-out infinite;
+            pointer-events: none;
+            opacity: 0.9;
+            z-index: 1;
+            filter: blur(1px);
+        }
+
+        @keyframes particleSwarm {
+            0% { 
+                background-position: 0% 0%, 100% 100%, 50% 0%, 0% 100%, 100% 0%, 25% 75%, 75% 25%, 50% 50%;
+                opacity: 0.9;
+            }
+            25% {
+                background-position: 100% 0%, 0% 100%, 25% 75%, 75% 25%, 50% 50%, 0% 0%, 100% 100%, 50% 0%;
+                opacity: 1;
+            }
+            50% {
+                background-position: 100% 100%, 0% 0%, 75% 25%, 25% 75%, 0% 100%, 100% 0%, 50% 50%, 0% 100%;
+                opacity: 0.8;
+            }
+            75% {
+                background-position: 0% 100%, 100% 0%, 50% 50%, 0% 0%, 25% 75%, 75% 25%, 0% 100%, 100% 100%;
+                opacity: 1;
+            }
+            100% { 
+                background-position: 0% 0%, 100% 100%, 50% 0%, 0% 100%, 100% 0%, 25% 75%, 75% 25%, 50% 50%;
+                opacity: 0.9;
+            }
+        }
+
+        .lightning {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .lightning::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 30%;
+            width: 3px;
+            height: 40%;
+            background: linear-gradient(180deg, 
+                transparent 0%,
+                #ff00ff 10%,
+                #00ffff 50%,
+                #ff00ff 90%,
+                transparent 100%);
+            box-shadow: 
+                0 0 20px #ff00ff,
+                0 0 40px #00ffff,
+                0 0 60px #ff00ff;
+            animation: lightning1 6s ease-in-out infinite;
+            opacity: 0;
+            transform: skewX(-3deg);
+        }
+
+        @keyframes lightning1 {
+            0%, 90%, 100% { opacity: 0; }
+            91%, 93% { opacity: 1; }
+            92% { opacity: 0.5; }
+        }
+
+        .lightning::after {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: 25%;
+            width: 2px;
+            height: 35%;
+            background: linear-gradient(180deg, 
+                transparent 0%,
+                #00ffff 10%,
+                #ffff00 50%,
+                #00ffff 90%,
+                transparent 100%);
+            box-shadow: 
+                0 0 20px #00ffff,
+                0 0 40px #ffff00,
+                0 0 60px #00ffff;
+            animation: lightning2 8s ease-in-out infinite;
+            opacity: 0;
+            transform: skewX(5deg);
+        }
+
+        @keyframes lightning2 {
+            0%, 85%, 100% { opacity: 0; }
+            86%, 88%, 90% { opacity: 1; }
+            87%, 89% { opacity: 0.3; }
+        }
+
+        .scan-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 255, 255, 0.03) 0px,
+                transparent 2px,
+                transparent 4px,
+                rgba(255, 0, 255, 0.03) 4px,
+                transparent 6px
+            );
+            pointer-events: none;
+            z-index: 2;
+            animation: scanMove 10s linear infinite;
+        }
+
+        @keyframes scanMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100px); }
+        }
+
+        .power-glow {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255, 0, 255, 0.2) 0%, transparent 30%),
+                radial-gradient(circle at 70% 70%, rgba(0, 255, 255, 0.2) 0%, transparent 30%),
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 0, 0.15) 0%, transparent 35%),
+                radial-gradient(circle at 20% 80%, rgba(255, 0, 0, 0.15) 0%, transparent 28%),
+                radial-gradient(circle at 80% 20%, rgba(0, 255, 0, 0.15) 0%, transparent 28%);
+            animation: powerOrbit 20s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes powerOrbit {
+            0% { 
+                transform: rotate(0deg) scale(1);
+                opacity: 0.8;
+            }
+            25% {
+                transform: rotate(90deg) scale(1.1);
+                opacity: 1;
+            }
+            50% {
+                transform: rotate(180deg) scale(0.9);
+                opacity: 0.9;
+            }
+            75% {
+                transform: rotate(270deg) scale(1.05);
+                opacity: 1;
+            }
+            100% { 
+                transform: rotate(360deg) scale(1);
+                opacity: 0.8;
+            }
+        }
+
+        .floating-orb {
+            position: fixed;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            filter: blur(20px);
+        }
+
+        .orb1 {
+            background: radial-gradient(circle, rgba(255, 0, 255, 0.6), transparent);
+            top: 10%;
+            left: 10%;
+            animation: float1 15s ease-in-out infinite;
+        }
+
+        .orb2 {
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.6), transparent);
+            top: 70%;
+            right: 10%;
+            animation: float2 18s ease-in-out infinite;
+        }
+
+        .orb3 {
+            background: radial-gradient(circle, rgba(255, 255, 0, 0.5), transparent);
+            bottom: 20%;
+            left: 20%;
+            animation: float3 20s ease-in-out infinite;
+        }
+
+        @keyframes float1 {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(100px, 80px) scale(1.2);
+            }
+            50% {
+                transform: translate(200px, -50px) scale(0.8);
+            }
+            75% {
+                transform: translate(50px, 100px) scale(1.1);
+            }
+        }
+
+        @keyframes float2 {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(-150px, -100px) scale(1.3);
+            }
+            50% {
+                transform: translate(-80px, 120px) scale(0.9);
+            }
+            75% {
+                transform: translate(-200px, 50px) scale(1.15);
+            }
+        }
+
+        @keyframes float3 {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(180px, -120px) scale(1.25);
+            }
+            66% {
+                transform: translate(-100px, -80px) scale(0.85);
+            }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(10, 10, 26, 0.98);
+            border-radius: 0;
+            border: 4px solid #ff00ff;
+            box-shadow: 
+                0 0 30px rgba(255, 0, 255, 1),
+                0 0 60px rgba(0, 255, 255, 0.8),
+                inset 0 0 80px rgba(255, 0, 255, 0.2);
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out, borderGlow 2s ease-in-out infinite alternate;
+            position: relative;
+            z-index: 100;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes borderGlow {
+            0% { 
+                border-color: #ff00ff;
+                box-shadow: 
+                    0 0 30px rgba(255, 0, 255, 1),
+                    0 0 60px rgba(0, 255, 255, 0.8),
+                    0 0 90px rgba(255, 0, 255, 0.6),
+                    inset 0 0 80px rgba(255, 0, 255, 0.2);
+            }
+            100% { 
+                border-color: #00ffff;
+                box-shadow: 
+                    0 0 30px rgba(0, 255, 255, 1),
+                    0 0 60px rgba(255, 0, 255, 0.8),
+                    0 0 90px rgba(0, 255, 255, 0.6),
+                    inset 0 0 80px rgba(0, 255, 255, 0.2);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+            color: #0a0a0a;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.1) 10px,
+                rgba(255, 255, 255, 0.1) 20px
+            );
+            animation: scan 3s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(50%); }
+        }
+
+        .header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2em;
+            margin-bottom: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 
+                0 0 10px rgba(0, 0, 0, 0.5),
+                0 0 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .cohort-section {
+            margin-bottom: 40px;
+        }
+
+        .cohort-section h2 {
+            color: #c778dd;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5em;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(255, 0, 255, 0.8);
+        }
+
+        .cohort-table {
+            width: 100%;
+            border: 3px solid #ff00ff;
+            box-shadow: 
+                0 0 20px rgba(255, 0, 255, 0.6),
+                inset 0 0 20px rgba(255, 0, 255, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .cohort-row {
+            display: grid;
+            grid-template-columns: 2.5fr 1fr 1.5fr;
+            gap: 0;
+            border-bottom: 2px solid rgba(0, 255, 255, 0.3);
+            transition: all 0.3s;
+        }
+
+        .cohort-row:last-child {
+            border-bottom: none;
+        }
+
+        .cohort-header {
+            background: rgba(255, 0, 255, 0.2);
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9em;
+            border-bottom: 3px solid #00ffff;
+        }
+
+        .cohort-row:not(.cohort-header):hover {
+            background: rgba(0, 255, 255, 0.1);
+            box-shadow: inset 0 0 20px rgba(0, 255, 255, 0.2);
+            border-left: 4px solid #00ffff;
+        }
+
+        .cohort-cell {
+            padding: 15px;
+            color: #a0d8e0;
+            display: flex;
+            align-items: center;
+            border-right: 1px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .cohort-cell:last-child {
+            border-right: none;
+        }
+
+        .cohort-header .cohort-cell {
+            color: #ff00ff;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.8);
+        }
+
+        .status-badge {
+            padding: 5px 12px;
+            border-radius: 3px;
+            font-size: 0.85em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .status-badge.available {
+            background: rgba(0, 255, 0, 0.2);
+            color: #00ff00;
+            border: 2px solid #00ff00;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+
+        .view-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+            color: #0a0a0a;
+            padding: 8px 20px;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85em;
+            border: 2px solid #ff00ff;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.6);
+            transition: all 0.3s;
+        }
+
+        .view-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 0 25px rgba(255, 0, 255, 1),
+                0 0 50px rgba(0, 255, 255, 0.8);
+            border-color: #00ffff;
+        }
+
+        .intro {
+            background: rgba(199, 120, 221, 0.08);
+            border-left: 5px solid #ff00ff;
+            border-right: 5px solid #00ffff;
+            padding: 20px;
+            margin-bottom: 30px;
+            position: relative;
+            box-shadow: 
+                0 0 25px rgba(255, 0, 255, 0.6),
+                0 0 50px rgba(0, 255, 255, 0.4),
+                inset 0 0 30px rgba(255, 0, 255, 0.1);
+        }
+
+        .intro p {
+            margin-bottom: 15px;
+            font-size: 1.05em;
+            color: #a0d8e0;
+            text-shadow: 0 0 3px rgba(86, 182, 194, 0.2);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+            color: #0a0a0a;
+            padding: 12px 30px;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            margin-top: 10px;
+            border: 3px solid #ff00ff;
+            box-shadow: 
+                0 0 20px rgba(255, 0, 255, 0.8),
+                0 0 40px rgba(0, 255, 255, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: left 0.3s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 0 30px rgba(255, 0, 255, 1),
+                0 0 60px rgba(0, 255, 255, 0.8),
+                0 5px 50px rgba(255, 0, 255, 0.6);
+            border-color: #00ffff;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: #c778dd;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #ff00ff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(255, 0, 255, 0.8);
+            box-shadow: 0 3px 15px rgba(255, 0, 255, 0.5);
+        }
+
+        .section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .section li {
+            padding: 15px 0;
+            padding-left: 40px;
+            position: relative;
+            border-bottom: 1px solid rgba(86, 182, 194, 0.2);
+            transition: all 0.3s;
+            color: #a0d8e0;
+        }
+
+        .section li:hover {
+            background: rgba(86, 182, 194, 0.05);
+            padding-left: 45px;
+            border-left: 4px solid #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.6), inset 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+
+        .section li:last-child {
+            border-bottom: none;
+        }
+
+        .section li::before {
+            content: attr(data-emoji);
+            position: absolute;
+            left: 0;
+            font-size: 1.5em;
+            filter: drop-shadow(0 0 3px rgba(199, 120, 221, 0.3));
+        }
+
+        .section li strong {
+            color: #c778dd;
+            text-shadow: 0 0 3px rgba(199, 120, 221, 0.2);
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            color: #a0d8e0;
+            line-height: 1.8;
+        }
+
+        .highlight-box {
+            background: rgba(229, 192, 123, 0.08);
+            border: 3px solid #ffff00;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+            box-shadow: 
+                0 0 25px rgba(255, 255, 0, 0.7),
+                0 0 50px rgba(255, 255, 0, 0.4),
+                inset 0 0 30px rgba(255, 255, 0, 0.1);
+        }
+
+        .highlight-box p {
+            color: #e5c07b;
+            text-shadow: 0 0 3px rgba(229, 192, 123, 0.2);
+        }
+
+        .value-box {
+            background: rgba(152, 195, 121, 0.08);
+            border: 3px solid #00ff00;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+            box-shadow: 
+                0 0 25px rgba(0, 255, 0, 0.7),
+                0 0 50px rgba(0, 255, 0, 0.4),
+                inset 0 0 30px rgba(0, 255, 0, 0.1);
+        }
+
+        .value-box li {
+            color: #98c379;
+        }
+
+        .value-box li strong {
+            color: #98c379;
+            text-shadow: 0 0 3px rgba(152, 195, 121, 0.3);
+        }
+
+        .footer {
+            background: rgba(199, 120, 221, 0.08);
+            padding: 30px 40px;
+            text-align: center;
+            color: #a0d8e0;
+            font-size: 0.95em;
+            border-top: 3px solid #ff00ff;
+            box-shadow: 
+                inset 0 0 30px rgba(255, 0, 255, 0.2),
+                0 -3px 20px rgba(255, 0, 255, 0.5);
+        }
+
+        .footer p {
+            color: #a0d8e0;
+        }
+
+        .footer strong {
+            color: #c778dd;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1em;
+            display: block;
+            margin-top: 10px;
+            text-shadow: 0 0 5px rgba(199, 120, 221, 0.3);
+            letter-spacing: 2px;
+        }
+
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 1.5em;
+                letter-spacing: 2px;
+            }
+
+            .content {
+                padding: 25px 20px;
+            }
+
+            .section h2 {
+                font-size: 1.3em;
+            }
+
+            .cohort-row {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .cohort-cell {
+                border-right: none;
+                border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+                padding: 10px 15px;
+            }
+
+            .cohort-cell:last-child {
+                border-bottom: none;
+            }
+
+            .cohort-header {
+                display: none;
+            }
+
+            .cohort-cell::before {
+                content: attr(data-label);
+                font-weight: 700;
+                color: #ff00ff;
+                margin-right: 10px;
+                font-size: 0.85em;
+            }
+
+            .view-button {
+                width: 100%;
+                text-align: center;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="power-glow"></div>
+    <div class="energy-burst"></div>
+    <div class="bg-stars"></div>
+    <div class="lightning"></div>
+    <div class="scan-lines"></div>
+    <div class="floating-orb orb1"></div>
+    <div class="floating-orb orb2"></div>
+    <div class="floating-orb orb3"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>New Hire<br>Onboarding Report Cards</h1>
+            <p>Revenue Onboarding Dashboard</p>
+        </div>
+
+        <div class="content">
+            <div class="intro">
+                <p>📊 <strong>New Hire Onboarding Report Cards are now available!</strong></p>
+                <p>Select a cohort below to view the onboarding report cards for your new hires.</p>
+            </div>
+
+            <div class="cohort-section">
+                <h2>📅 Available Cohort Report Cards</h2>
+                
+                <div class="cohort-table">
+                    <div class="cohort-row cohort-header">
+                        <div class="cohort-cell">Cohort Date</div>
+                        <div class="cohort-cell">Status</div>
+                        <div class="cohort-cell">Action</div>
+                    </div>
+                    
+                    <div class="cohort-row">
+                        <div class="cohort-cell" data-label="Cohort: "><strong>November 3, 2025</strong></div>
+                        <div class="cohort-cell" data-label="Status: "><span class="status-badge available">Available</span></div>
+                        <div class="cohort-cell" data-label="">
+                            <a href="https://www.google.com/search?sca_esv=1543fb6b43c5b04c&rlz=1C5GCCM_en&udm=2&fbs=AIIjpHxU7SXXniUZfeShr2fp4giZ1Y6MJ25_tmWITc7uy4KIeiAkWG4OlBE2zyCTMjPbGmPgfe_7ak8LUsonpWCvT6w6csnyTymMQ2XHqFKxVhyiTsB7_xjE7pCrlhvgmABFb-qvUXFeXLKmP5HUMuOwzi3W7YDpORc67v9mLSkQHRt4AKqGi9dyO-keM7IQ79ZYnZFqT5u-Q65xNOQ8PY-9XmwIuX2eAQ&q=shopify+photos&sa=X&sqi=2&ved=2ahUKEwiF7Nacp9qQAxVm1fACHWt6KgsQtKgLegQIGxAB&biw=1512&bih=772&dpr=2#vhid=HcrkrggYj5l_5M&vssid=mosaic" class="view-button" target="_blank">View Report</a>
+                        </div>
+                    </div>
+
+                    <div class="cohort-row">
+                        <div class="cohort-cell" data-label="Cohort: "><strong>October 20, 2025</strong></div>
+                        <div class="cohort-cell" data-label="Status: "><span class="status-badge available">Available</span></div>
+                        <div class="cohort-cell" data-label="">
+                            <a href="https://your-report-card-url-here.com/report/oct-20" class="view-button">View Report</a>
+                        </div>
+                    </div>
+
+                    <div class="cohort-row">
+                        <div class="cohort-cell" data-label="Cohort: "><strong>October 6, 2025</strong></div>
+                        <div class="cohort-cell" data-label="Status: "><span class="status-badge available">Available</span></div>
+                        <div class="cohort-cell" data-label="">
+                            <a href="https://your-report-card-url-here.com/report/oct-6" class="view-button">View Report</a>
+                        </div>
+                    </div>
+
+                    <div class="cohort-row">
+                        <div class="cohort-cell" data-label="Cohort: "><strong>September 22, 2025</strong></div>
+                        <div class="cohort-cell" data-label="Status: "><span class="status-badge available">Available</span></div>
+                        <div class="cohort-cell" data-label="">
+                            <a href="https://your-report-card-url-here.com/report/sept-22" class="view-button">View Report</a>
+                        </div>
+                    </div>
+
+                    <div class="cohort-row">
+                        <div class="cohort-cell" data-label="Cohort: "><strong>September 8, 2025</strong></div>
+                        <div class="cohort-cell" data-label="Status: "><span class="status-badge available">Available</span></div>
+                        <div class="cohort-cell" data-label="">
+                            <a href="https://your-report-card-url-here.com/report/sept-8" class="view-button">View Report</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>What's included in your report card:</h2>
+                <ul>
+                    <li data-emoji="🧭">
+                        <strong>Core Competency Scoring Overview Chart:</strong> Track new hires' strengths and development areas across foundational skills.
+                    </li>
+                    <li data-emoji="🛠️">
+                        <strong>Role-Specific Competency Scoring Overview:</strong> See performance on critical skills unique to each role.
+                    </li>
+                    <li data-emoji="🗓️">
+                        <strong>Live Session Attendance Rate:</strong> Monitor participation in onboarding sessions.
+                    </li>
+                    <li data-emoji="📚">
+                        <strong>Seismic Completion Rate:</strong> Review progress on assigned Seismic trainings.
+                    </li>
+                    <li data-emoji="🏅">
+                        <strong>Badge Overview Chart:</strong> Instantly view badge completions and onboarding milestone compliance.
+                    </li>
+                    <li data-emoji="🤖">
+                        <strong>Individual Participant Assessment Report:</strong> Read an AI-generated summary highlighting key strengths and actionable coaching opportunities for each new hire.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>How the evaluations are created:</h2>
+                <div class="highlight-box">
+                    <p>All report card scores and assessments are generated using transcript data from Revenue Onboarding live sessions, analyzed by AI against role-specific and core competency metrics. This ensures that each evaluation reflects actual participation and engagement using an objective, data-driven process.</p>
+                    <p style="margin-bottom: 0;"><strong>Note:</strong> Seismic Completion Rate and Badge Overview Chart are specifically based on each new hire's progress as of their week 5 mark in the program.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Why this is valuable for you:</h2>
+                <div class="value-box">
+                    <ul>
+                        <li data-emoji="🚦">
+                            <strong>Clear Progress Tracking:</strong> Visualize your new hire's journey across all onboarding touchpoints.
+                        </li>
+                        <li data-emoji="📈">
+                            <strong>Benchmarking:</strong> Easily compare your new hire's progress to peers in their cohort.
+                        </li>
+                        <li data-emoji="💡">
+                            <strong>Actionable Insights & Coaching:</strong> Quickly spot where your support will have the most impact.
+                        </li>
+                        <li data-emoji="🕒">
+                            <strong>At-a-Glance Data:</strong> Save time and make informed, proactive decisions with concise visual summaries.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>If you have any questions or would like to discuss your team's onboarding progress in detail, please let us know!</p>
+            <strong>Revenue Onboarding Team</strong>
+        </div>
+    </div>
+</body>
+</html>
+
